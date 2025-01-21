@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import PiwikProProvider from "@piwikpro/next-piwik-pro";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <PiwikProProvider
+          containerId={process.env.NEXT_PUBLIC_CONTAINER_ID as string}
+          containerUrl={process.env.NEXT_PUBLIC_CONTAINER_URL as string}
+        >
+          {children}
+        </PiwikProProvider>
       </body>
     </html>
   );
