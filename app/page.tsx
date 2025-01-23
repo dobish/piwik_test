@@ -11,6 +11,12 @@ export default function Index() {
 
   const morePosts = allPosts.slice(1);
 
+  if (!process.env.NODE_ENV) {
+    console.error("Environment variable MY_VARIABLE is not defined");
+    process.exit(1); // Exit the process to avoid errors
+  }
+  console.log(`MY_VARIABLE: ${process.env.NODE_ENV}`);
+
   return (
     <main>
       <Container>
